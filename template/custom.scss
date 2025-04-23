@@ -1,0 +1,80 @@
+/*-- scss:defaults --*/
+
+$mdb:  #111d4e;
+$bar-height: 65px;
+$logo-height: 55px;
+
+/*-- scss:rules --*/
+body,
+
+/* Title Slide */
+#title-slide {
+  .title {
+    color: $mdb;
+  }
+  .quarto-title-author {
+    color: $mdb;
+  }
+}
+
+/* Level1 slides
+.reveal .slides section.level1 {
+  background-color: $mdb;
+  background-size: 100% 100%;
+  color:            white;
+  h1 {
+    color: white;
+  }
+}*/
+
+/* Level2 slides
+.reveal .slides section.level2 {
+  background-color: white !important;
+  color:            black;
+  h2 {
+    color: $mdb;
+  }
+}*/
+
+.reveal{
+  background-color: white !important;
+  color:            black;
+  h1, h2 {
+    color: $mdb;
+  }
+}
+
+
+/* Logo on all slides */
+.reveal .slide-logo {
+  display: block;
+  position: fixed;
+  bottom: -7.5px !important; /* above the bar */
+  right: unset !important;
+  top: unset !important;
+  left: 15px;
+  height: $logo-height !important;
+  width: 100x !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  z-index: 9999 !important;
+}
+
+/* Draw the bar fixed at viewport bottom */
+.reveal::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: $bar-height;
+  background: $mdb;
+  pointer-events: none;
+  z-index: 9998 !important;
+}
+
+
+/* Add bottom padding so slide content never overlaps the fixed bar */
+.reveal {
+  padding-bottom: calc(#{$bar-height} + 0.75rem);
+}
