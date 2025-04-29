@@ -1,35 +1,92 @@
 ---
-title: "TITLE"
-author: "Author"
-affiliation: High Field MR Center, Center for Medical Physics and Biomedical Engineering, Medical University of Vienna, Austria
+title: "A Reproducible Pipeline for Population Receptive Field Mapping"
+author: "David Linhardt, Christian Windischberger & Garikoitz Lerma-Usabiaga"
+affiliation: "High Field MR Center, Center for Medical Physics and Biomedical Engineering, Medical University of Vienna, Austria"
 format:
     revealjs:
         logo: template/logo1.png
         theme: template/custom.scss
+        highlight-style: arrow-dark
 ---
 
-# In the morning
 
-## Getting up
+# Why we need it
 
-- Turn off alarm
-- Get out of bed
+::: {.notes}
+Why do we need containerization, standardization, reproducvible analyses
+:::
 
-## Breakfast
+## What I found when I started
+::: {.fragment}
+Have a look on the analysis of the last study
+:::
 
-- Eat eggs
-- Drink coffee
+::: {.fragment}
+{{< include sources/terminal_tree.qmd >}}
+:::
 
-# In the evening
+::: {.fragment}
+This is not a problem, just check the scripts folder
+:::
 
-- here is some new text
 
-## Dinner
+## What I found when I started
 
-- Eat spaghetti
-- Drink wine
+::: {.fragment}
+{{< include sources/terminal_ls.qmd >}}
+:::
 
-## Going to sleep
+::: {.fragment}
+and it was running on one server only...
+:::
 
-- Get in bed
-- Count sheep
+::: {.fragment}
+with the correct user...
+:::
+
+::: {.notes}
+Have you ever tried updating MATLAB or Python...
+Took me a lot of effort to reproduce old analysis and this should be more straightforward
+:::
+
+
+## What I did not find when I started
+
+{{< include sources/terminal_ls.qmd >}}
+
+and it was running on one server only...
+
+with the correct user...
+
+
+# Containerized pRF Analysis Framework {.nostretch}
+
+::: {.fragment}
+![](sources/plos_gari_paper.png){width="80%"}
+:::
+
+
+## Containers
+::: {.fragment}
+- Docker and/or Singularity
+![](sources/docker.png){.absolute top=0vh right=0vh width="300px"}
+![](sources/singularity.png){.absolute top=20vh right=0vh width="300px"}
+:::
+
+::: {.fragment}
+- Containers encapsulate all necessary\
+programs libraries and code snippets
+:::
+
+::: {.incremental}
+- Easy to use
+- Reproducible even on different OS
+- Still running in years
+:::
+
+
+## Containerized pRF Analysis Framework {.nostretch}
+
+::: {.fragment}
+![](sources/plos_gari_paper.png){width="80%"}
+:::

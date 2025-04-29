@@ -6,11 +6,11 @@
 <script src="presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <meta name="author" content="Author">
-  <title>TITLE</title>
+  <meta name="author" content="David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga">
+  <title>A Reproducible Pipeline for Population Receptive Field Mapping</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,8 +28,73 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; background-color: #2a0f15; font-weight: bold; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-15d2aa45de9d2c667bbef397a414d6e7.css">
+  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-4f61b39ee1c59f084fe1c4e7412e14cb.css">
   <link href="presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -127,56 +192,542 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">TITLE</h1>
+  <h1 class="title">A Reproducible Pipeline for Population Receptive Field Mapping</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Author 
+David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga 
 </div>
 </div>
 </div>
 
 </section>
 <section>
-<section id="in-the-morning" class="title-slide slide level1 center">
-<h1>In the morning</h1>
-
+<section id="why-we-need-it" class="title-slide slide level1 center">
+<h1>Why we need it</h1>
+<aside class="notes">
+<p>Why do we need containerization, standardization, reproducvible analyses</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="getting-up" class="slide level2">
-<h2>Getting up</h2>
-<ul>
-<li>Turn off alarm</li>
-<li>Get out of bed</li>
-</ul>
+<section id="what-i-found-when-i-started" class="slide level2">
+<h2>What I found when I started</h2>
+<div class="fragment">
+<p>Have a look on the analysis of the last study</p>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb1" style="max-height:30vh; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tree</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> preproc</span>
+<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── TEST</span>
+<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   ├── ret14-02</span>
+<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   └── ret14-03</span>
+<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ret14-01</span>
+<span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ret14-02</span>
+<span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ret14-03</span>
+<span id="cb1-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ret14-03.bkp</span>
+<span id="cb1-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ret14-04</span>
+<span id="cb1-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ret14-05</span>
+<span id="cb1-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── ret14-06</span>
+<span id="cb1-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> preproc2</span>
+<span id="cb1-15"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> BACKUPret14-04</span>
+<span id="cb1-16"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> OLD2ret14-03</span>
+<span id="cb1-17"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> OLDret14-03</span>
+<span id="cb1-18"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> _ret14-03</span>
+<span id="cb1-19"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> ret14-01</span>
+<span id="cb1-20"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> ret14-02</span>
+<span id="cb1-21"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> ret14-02_NEW</span>
+<span id="cb1-22"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> ret14-03</span>
+<span id="cb1-23"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> ret14-04</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>This is not a problem, just check the scripts folder</p>
+</div>
 </section>
-<section id="breakfast" class="slide level2">
-<h2>Breakfast</h2>
-<ul>
-<li>Eat eggs</li>
-<li>Drink coffee</li>
-</ul>
+<section id="what-i-found-when-i-started-1" class="slide level2">
+<h2>What I found when I started</h2>
+<div class="fragment">
+<div class="sourceCode" id="cb2" style="max-height:30vh; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /z/fmrilab/lab/RETPipeline/Scripts</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">GetPRFParameters.m</span></span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">MYrmJitterImages.m</span></span>
+<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">MyStrSplit.m</span></span>
+<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RET15Reliability.m</span></span>
+<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAllPRFCenterHistogram.m</span></span>
+<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAllTasksAllRunsConcatAndMelodic.m</span></span>
+<span id="cb2-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETApplyMelodic.m</span></span>
+<span id="cb2-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAssignGLMParams.m</span></span>
+<span id="cb2-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAverageInplaneRunsAndXformToGray.m</span></span>
+<span id="cb2-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETBiasFieldCorrection.m</span></span>
+<span id="cb2-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCREATEFACTORPLOTS.m</span></span>
+<span id="cb2-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCREATESTATS.m</span></span>
+<span id="cb2-15"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcAndPlotMeanHistogram.m</span></span>
+<span id="cb2-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcAndPlotMeanHistogramBACKK.m</span></span>
+<span id="cb2-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcCorrelationCoef.m</span></span>
+<span id="cb2-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcCorrelationCoefPol.m</span></span>
+<span id="cb2-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcHistoDifferences.m</span></span>
+<span id="cb2-20"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcParameterErrors.m</span></span>
+<span id="cb2-21"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcSummaryCoefficientStat.m</span></span>
+<span id="cb2-22"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcSummaryCoefficientStatChange.m</span></span>
+<span id="cb2-23"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcSummaryCoefficientStatReliability.m</span></span>
+<span id="cb2-24"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'RETCalcVarExp (1).m'</span></span>
+<span id="cb2-25"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcVarExp.m</span></span>
+<span id="cb2-26"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalculateMelodic.m</span></span>
+<span id="cb2-27"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalculatePValueFromVarExp.m</span></span>
+<span id="cb2-28"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckActiveROIVoxels.m</span></span>
+<span id="cb2-29"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckAlignment.m</span></span>
+<span id="cb2-30"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckAllSignVoxels.m</span></span>
+<span id="cb2-31"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckForSmoothedData.m</span></span>
+<span id="cb2-32"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckSignVoxels.m</span></span>
+<span id="cb2-33"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETClassicEyetrackerCorrection.m</span></span>
+<span id="cb2-34"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETClean.m</span></span>
+<span id="cb2-35"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCleanMACFUNC.m</span></span>
+<span id="cb2-36"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCombineDifferentTasks.m</span></span>
+<span id="cb2-37"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCombineSingleBand.m</span></span>
+<span id="cb2-38"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCombineandCoregTopup.m</span></span>
+<span id="cb2-39"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCompareAllVarExp.m</span></span>
+<span id="cb2-40"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCompareVarExp.m</span></span>
+<span id="cb2-41"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConcatParamsFile.m</span></span>
+<span id="cb2-42"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConcatRuns.m</span></span>
+<span id="cb2-43"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConvertAllRunsToWhichRuns.m</span></span>
+<span id="cb2-44"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConvertDatatype.m</span></span>
+<span id="cb2-45"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConvertToLPI.m</span></span>
+<span id="cb2-46"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCoregisterSingleBandToMeanFunctional.m</span></span>
+<span id="cb2-47"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCorrectStableRunsForMeanFixation.m</span></span>
+<span id="cb2-48"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateArtificialFullfieldVolume.m</span></span>
+<span id="cb2-49"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateArtificialFullfieldVolumeNifti.m</span></span>
+<span id="cb2-50"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateBigSummaryCoefficientsTXT.m</span></span>
+<span id="cb2-51"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'RETCreateBigSummaryCoefficientsTXT_varexp (1).m'</span></span>
+<span id="cb2-52"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateBigSummaryCoefficientsTXT_varexp.m</span></span>
+<span id="cb2-53"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateDataStruct.m</span></span>
+<span id="cb2-54"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateEccvsSigmaSummaryData.m</span></span>
+<span id="cb2-55"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateFolders.m</span></span>
+<span id="cb2-56"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateInplaneAnatomy.m</span></span>
+<span id="cb2-57"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateMeanFitDist.m</span></span>
+<span id="cb2-58"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateMicroperimetryColormap.m</span></span>
+<span id="cb2-59"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreatePDFWithVariableWidths.m</span></span>
+<span id="cb2-60"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateParadigmsFile.m</span></span>
+<span id="cb2-61"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateRuns.m</span></span>
+<span id="cb2-62"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateSubjectAndSessionList.m</span></span>
+<span id="cb2-63"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDefineDataTypesStruct.m</span></span>
+<span id="cb2-64"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDefinemrVistaDirectory.m</span></span>
+<span id="cb2-65"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDiffMaps.m</span></span>
+<span id="cb2-66"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDistFactorSNRComparison.m</span></span>
+<span id="cb2-67"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDoMelodic.m</span></span>
+<span id="cb2-68"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETExpandSessions.m</span></span>
+<span id="cb2-69"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETExtractROIData.m</span></span>
+<span id="cb2-70"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETFreesurferSegmentation.m</span></span>
+<span id="cb2-71"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETFullFieldParams.m</span></span>
+<span id="cb2-72"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGazeSpectrum.m</span></span>
+<span id="cb2-73"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetActiveFullfieldROIVoxels.m</span></span>
+<span id="cb2-74"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetMiddleDicomHeaderInfo.m</span></span>
+<span id="cb2-75"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetNumberOfNormalRuns.m</span></span>
+<span id="cb2-76"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetNumberOfRuns.m</span></span>
+<span id="cb2-77"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetSignificantEccThreshVoxels.m</span></span>
+<span id="cb2-78"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetSignificantVoxels.m</span></span>
+<span id="cb2-79"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetStableGazerCenterDeviation.m</span></span>
+<span id="cb2-80"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetTSeriesandModel.m</span></span>
+<span id="cb2-81"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetVols.m</span></span>
+<span id="cb2-82"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETImportDICOMS.m</span></span>
+<span id="cb2-83"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETInitializeGray.m</span></span>
+<span id="cb2-84"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETInitmrVista.m</span></span>
+<span id="cb2-85"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETInplaneFullfieldmrVista.m</span></span>
+<span id="cb2-86"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETLoadSummaryCCForTTest.m</span></span>
+<span id="cb2-87"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETLoadSummaryVarExpForTTest.m</span></span>
+<span id="cb2-88"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETLoadSummaryVarExpForTTest_CompareGroups.m</span></span>
+<span id="cb2-89"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMAE.m</span></span>
+<span id="cb2-90"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMASTERCREATEFACTORPLOTS.m</span></span>
+<span id="cb2-91"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMP2RAGEdenoise.m</span></span>
+<span id="cb2-92"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeCoveragePlots.m</span></span>
+<span id="cb2-93"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeRET15Hists.m</span></span>
+<span id="cb2-94"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeScotDist.m</span></span>
+<span id="cb2-95"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeScotDistFromRFCov.m</span></span>
+<span id="cb2-96"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeScotDistVariableWidth.m</span></span>
+<span id="cb2-97"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeSummaryCorrelationCoefficients.m</span></span>
+<span id="cb2-98"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeSummaryCorrelationCoefficientsMean.m</span></span>
+<span id="cb2-99"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeSummaryCorrelationCoefficientsMean_varexp.m</span></span>
+<span id="cb2-100"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeXYandECCPlots.m</span></span>
+<span id="cb2-101"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETNonBinaryCorrection.m</span></span>
+<span id="cb2-102"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETNormalize.m</span></span>
+<span id="cb2-103"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETNormalizeToIntervall.m</span></span>
+<span id="cb2-104"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETOLDConcatRuns.m</span></span>
+<span id="cb2-105"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETOLDPerformAlignment.m</span></span>
+<span id="cb2-106"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETOLDPostSegmentationAnalysis.m</span></span>
+<span id="cb2-107"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH1.m</span></span>
+<span id="cb2-108"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH2.m</span></span>
+<span id="cb2-109"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH3.m</span></span>
+<span id="cb2-110"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH4.m</span></span>
+<span id="cb2-111"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH5.m</span></span>
+<span id="cb2-112"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH6.m</span></span>
+<span id="cb2-113"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPRFCenterHistogram.m</span></span>
+<span id="cb2-114"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPerformAlignment.m</span></span>
+<span id="cb2-115"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPerformEyetrackerCorrection.m</span></span>
+<span id="cb2-116"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPhysioCorrection.m</span></span>
+<span id="cb2-117"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotAllCoverage.m</span></span>
+<span id="cb2-118"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotAllGazeSpectra.m</span></span>
+<span id="cb2-119"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotCorrelation.m</span></span>
+<span id="cb2-120"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotCoverage.m</span></span>
+<span id="cb2-121"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotScotDist.m</span></span>
+<span id="cb2-122"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotScotDistVarExpMeans.m</span></span>
+<span id="cb2-123"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotScotDistVisualRegionsMeans.m</span></span>
+<span id="cb2-124"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotXYandECCRegressionPlots.m</span></span>
+<span id="cb2-125"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPolarAngleMeanRFCov.m</span></span>
+<span id="cb2-126"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPostSegmentationAnalysis.m</span></span>
+<span id="cb2-127"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPreSegmentationAnalysis.m</span></span>
+<span id="cb2-128"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETQuantifyScotoma.m</span></span>
+<span id="cb2-129"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETQuantifySingleSubjectScotoma.m</span></span>
+<span id="cb2-130"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETQwarp.m</span></span>
+<span id="cb2-131"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETRealignPrevious.m</span></span>
+<span id="cb2-132"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETRealignment.m</span></span>
+<span id="cb2-133"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSAVEALLRELIABILITYDATA.m</span></span>
+<span id="cb2-134"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSAVEALLSTATS.m</span></span>
+<span id="cb2-135"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSAVEMEANCORRECTEDDATA.m</span></span>
+<span id="cb2-136"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSPMCenterSurround.m</span></span>
+<span id="cb2-137"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSPMFullField.m</span></span>
+<span id="cb2-138"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSPMFullFieldFake.m</span></span>
+<span id="cb2-139"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllCorrelationCoefficients.m</span></span>
+<span id="cb2-140"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllCorrelationCoefficients_MeanCorrected.m</span></span>
+<span id="cb2-141"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllCoveragePlots.m</span></span>
+<span id="cb2-142"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMaps.m</span></span>
+<span id="cb2-143"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMapsR1VR2.m</span></span>
+<span id="cb2-144"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMapsRandSaccETCorrVSStable.m</span></span>
+<span id="cb2-145"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMapsRandSaccVSStable.m</span></span>
+<span id="cb2-146"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllEccData.m</span></span>
+<span id="cb2-147"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllEccvsSigma.m</span></span>
+<span id="cb2-148"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllImages.m</span></span>
+<span id="cb2-149"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllParameters.m</span></span>
+<span id="cb2-150"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllParametersMeanCorrected.m</span></span>
+<span id="cb2-151"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllRFCovData.m</span></span>
+<span id="cb2-152"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllSigmaLookups.m</span></span>
+<span id="cb2-153"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllSignVoxelIndices.m</span></span>
+<span id="cb2-154"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllSignVoxelIndicesRET15.m</span></span>
+<span id="cb2-155"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveEccData.m</span></span>
+<span id="cb2-156"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveEccvsSigma.m</span></span>
+<span id="cb2-157"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveImage.m</span></span>
+<span id="cb2-158"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveImageLea.m</span></span>
+<span id="cb2-159"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveMeanEccvsSigma.m</span></span>
+<span id="cb2-160"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveParameter.m</span></span>
+<span id="cb2-161"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSavePerimetryOnlyDataPoints.m</span></span>
+<span id="cb2-162"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRFCovData.m</span></span>
+<span id="cb2-163"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRun12CorrelationCoefficients.m</span></span>
+<span id="cb2-164"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRun12SummaryCorrelationCoefficientsSummary.m</span></span>
+<span id="cb2-165"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRun12SummaryCorrelationCoefficientsSummary_MeanCorrected.m</span></span>
+<span id="cb2-166"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRunCorrelationCoefficients.m</span></span>
+<span id="cb2-167"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRunSummaryCorrelationCoefficientsSummary.m</span></span>
+<span id="cb2-168"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveSigmaLookup.m</span></span>
+<span id="cb2-169"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveSignVoxelIndices.m</span></span>
+<span id="cb2-170"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetAllCustomThreshold.m</span></span>
+<span id="cb2-171"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetAllFullfieldThreshold.m</span></span>
+<span id="cb2-172"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetConcatEightbarsAsDefaults.m</span></span>
+<span id="cb2-173"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetCustomThreshold.m</span></span>
+<span id="cb2-174"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetFullfieldThreshold.m</span></span>
+<span id="cb2-175"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetParamsForInitmrVista.m</span></span>
+<span id="cb2-176"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETShiftDicoms.m</span></span>
+<span id="cb2-177"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETShowMAEAdvantages.m</span></span>
+<span id="cb2-178"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETShowOnlyROIData.m</span></span>
+<span id="cb2-179"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSignRankTests.m</span></span>
+<span id="cb2-180"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSignRankTestsEXAKT.m</span></span>
+<span id="cb2-181"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSignRankTestsReliability.m</span></span>
+<span id="cb2-182"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSliceTiming.m</span></span>
+<span id="cb2-183"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSmoothing.m</span></span>
+<span id="cb2-184"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETTTests.m</span></span>
+<span id="cb2-185"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETToAnatSpace.m</span></span>
+<span id="cb2-186"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETTopup.m</span></span>
+<span id="cb2-187"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETUnwarp.m</span></span>
+<span id="cb2-188"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETUnwarpOrTopup.m</span></span>
+<span id="cb2-189"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETaddOLDmrVista.m</span></span>
+<span id="cb2-190"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETaddmrVista.m</span></span>
+<span id="cb2-191"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETinterativeScotomaEstimation.m</span></span>
+<span id="cb2-192"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETiterativeScotomaEstimation.m</span></span>
+<span id="cb2-193"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETlinkHeudiconv.m</span></span>
+<span id="cb2-194"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETrmOLDmrVista.m</span></span>
+<span id="cb2-195"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETrmPlotCoverage.m</span></span>
+<span id="cb2-196"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETrmmrVista.m</span></span>
+<span id="cb2-197"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">STIMSIM22_PostBatch.m</span></span>
+<span id="cb2-198"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">STIMSIM22_PreBatch.m</span></span>
+<span id="cb2-199"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">blalaa.m</span></span>
+<span id="cb2-200"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">ea_antsmat2mat.m</span></span>
+<span id="cb2-201"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">kde.m</span></span>
+<span id="cb2-202"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">kde2d.m</span></span>
+<span id="cb2-203"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">parfor_progressbar.m</span></span>
+<span id="cb2-204"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">rmNonBinaryCorrection.m</span></span>
+<span id="cb2-205"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">rsl_ls.m</span></span>
+<span id="cb2-206"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">rsl_makelist.m</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>and it was running on one server only…</p>
+</div>
+<div class="fragment">
+<p>with the correct user…</p>
+</div>
+<aside class="notes">
+<p>Have you ever tried updating MATLAB or Python… Took me a lot of effort to reproduce old analysis and this should be more straightforward</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-i-did-not-find-when-i-started" class="slide level2">
+<h2>What I did not find when I started</h2>
+<div class="sourceCode" id="cb3" style="max-height:30vh; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /z/fmrilab/lab/RETPipeline/Scripts</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">GetPRFParameters.m</span></span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">MYrmJitterImages.m</span></span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">MyStrSplit.m</span></span>
+<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RET15Reliability.m</span></span>
+<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAllPRFCenterHistogram.m</span></span>
+<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAllTasksAllRunsConcatAndMelodic.m</span></span>
+<span id="cb3-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETApplyMelodic.m</span></span>
+<span id="cb3-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAssignGLMParams.m</span></span>
+<span id="cb3-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETAverageInplaneRunsAndXformToGray.m</span></span>
+<span id="cb3-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETBiasFieldCorrection.m</span></span>
+<span id="cb3-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCREATEFACTORPLOTS.m</span></span>
+<span id="cb3-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCREATESTATS.m</span></span>
+<span id="cb3-15"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcAndPlotMeanHistogram.m</span></span>
+<span id="cb3-16"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcAndPlotMeanHistogramBACKK.m</span></span>
+<span id="cb3-17"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcCorrelationCoef.m</span></span>
+<span id="cb3-18"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcCorrelationCoefPol.m</span></span>
+<span id="cb3-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcHistoDifferences.m</span></span>
+<span id="cb3-20"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcParameterErrors.m</span></span>
+<span id="cb3-21"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcSummaryCoefficientStat.m</span></span>
+<span id="cb3-22"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcSummaryCoefficientStatChange.m</span></span>
+<span id="cb3-23"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcSummaryCoefficientStatReliability.m</span></span>
+<span id="cb3-24"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'RETCalcVarExp (1).m'</span></span>
+<span id="cb3-25"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalcVarExp.m</span></span>
+<span id="cb3-26"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalculateMelodic.m</span></span>
+<span id="cb3-27"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCalculatePValueFromVarExp.m</span></span>
+<span id="cb3-28"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckActiveROIVoxels.m</span></span>
+<span id="cb3-29"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckAlignment.m</span></span>
+<span id="cb3-30"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckAllSignVoxels.m</span></span>
+<span id="cb3-31"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckForSmoothedData.m</span></span>
+<span id="cb3-32"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCheckSignVoxels.m</span></span>
+<span id="cb3-33"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETClassicEyetrackerCorrection.m</span></span>
+<span id="cb3-34"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETClean.m</span></span>
+<span id="cb3-35"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCleanMACFUNC.m</span></span>
+<span id="cb3-36"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCombineDifferentTasks.m</span></span>
+<span id="cb3-37"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCombineSingleBand.m</span></span>
+<span id="cb3-38"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCombineandCoregTopup.m</span></span>
+<span id="cb3-39"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCompareAllVarExp.m</span></span>
+<span id="cb3-40"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCompareVarExp.m</span></span>
+<span id="cb3-41"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConcatParamsFile.m</span></span>
+<span id="cb3-42"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConcatRuns.m</span></span>
+<span id="cb3-43"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConvertAllRunsToWhichRuns.m</span></span>
+<span id="cb3-44"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConvertDatatype.m</span></span>
+<span id="cb3-45"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETConvertToLPI.m</span></span>
+<span id="cb3-46"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCoregisterSingleBandToMeanFunctional.m</span></span>
+<span id="cb3-47"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCorrectStableRunsForMeanFixation.m</span></span>
+<span id="cb3-48"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateArtificialFullfieldVolume.m</span></span>
+<span id="cb3-49"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateArtificialFullfieldVolumeNifti.m</span></span>
+<span id="cb3-50"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateBigSummaryCoefficientsTXT.m</span></span>
+<span id="cb3-51"><a href="" aria-hidden="true" tabindex="-1"></a><span class="st">'RETCreateBigSummaryCoefficientsTXT_varexp (1).m'</span></span>
+<span id="cb3-52"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateBigSummaryCoefficientsTXT_varexp.m</span></span>
+<span id="cb3-53"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateDataStruct.m</span></span>
+<span id="cb3-54"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateEccvsSigmaSummaryData.m</span></span>
+<span id="cb3-55"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateFolders.m</span></span>
+<span id="cb3-56"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateInplaneAnatomy.m</span></span>
+<span id="cb3-57"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateMeanFitDist.m</span></span>
+<span id="cb3-58"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateMicroperimetryColormap.m</span></span>
+<span id="cb3-59"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreatePDFWithVariableWidths.m</span></span>
+<span id="cb3-60"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateParadigmsFile.m</span></span>
+<span id="cb3-61"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateRuns.m</span></span>
+<span id="cb3-62"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETCreateSubjectAndSessionList.m</span></span>
+<span id="cb3-63"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDefineDataTypesStruct.m</span></span>
+<span id="cb3-64"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDefinemrVistaDirectory.m</span></span>
+<span id="cb3-65"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDiffMaps.m</span></span>
+<span id="cb3-66"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDistFactorSNRComparison.m</span></span>
+<span id="cb3-67"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETDoMelodic.m</span></span>
+<span id="cb3-68"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETExpandSessions.m</span></span>
+<span id="cb3-69"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETExtractROIData.m</span></span>
+<span id="cb3-70"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETFreesurferSegmentation.m</span></span>
+<span id="cb3-71"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETFullFieldParams.m</span></span>
+<span id="cb3-72"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGazeSpectrum.m</span></span>
+<span id="cb3-73"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetActiveFullfieldROIVoxels.m</span></span>
+<span id="cb3-74"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetMiddleDicomHeaderInfo.m</span></span>
+<span id="cb3-75"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetNumberOfNormalRuns.m</span></span>
+<span id="cb3-76"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetNumberOfRuns.m</span></span>
+<span id="cb3-77"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetSignificantEccThreshVoxels.m</span></span>
+<span id="cb3-78"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetSignificantVoxels.m</span></span>
+<span id="cb3-79"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetStableGazerCenterDeviation.m</span></span>
+<span id="cb3-80"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetTSeriesandModel.m</span></span>
+<span id="cb3-81"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETGetVols.m</span></span>
+<span id="cb3-82"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETImportDICOMS.m</span></span>
+<span id="cb3-83"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETInitializeGray.m</span></span>
+<span id="cb3-84"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETInitmrVista.m</span></span>
+<span id="cb3-85"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETInplaneFullfieldmrVista.m</span></span>
+<span id="cb3-86"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETLoadSummaryCCForTTest.m</span></span>
+<span id="cb3-87"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETLoadSummaryVarExpForTTest.m</span></span>
+<span id="cb3-88"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETLoadSummaryVarExpForTTest_CompareGroups.m</span></span>
+<span id="cb3-89"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMAE.m</span></span>
+<span id="cb3-90"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMASTERCREATEFACTORPLOTS.m</span></span>
+<span id="cb3-91"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMP2RAGEdenoise.m</span></span>
+<span id="cb3-92"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeCoveragePlots.m</span></span>
+<span id="cb3-93"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeRET15Hists.m</span></span>
+<span id="cb3-94"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeScotDist.m</span></span>
+<span id="cb3-95"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeScotDistFromRFCov.m</span></span>
+<span id="cb3-96"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeScotDistVariableWidth.m</span></span>
+<span id="cb3-97"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeSummaryCorrelationCoefficients.m</span></span>
+<span id="cb3-98"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeSummaryCorrelationCoefficientsMean.m</span></span>
+<span id="cb3-99"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeSummaryCorrelationCoefficientsMean_varexp.m</span></span>
+<span id="cb3-100"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETMakeXYandECCPlots.m</span></span>
+<span id="cb3-101"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETNonBinaryCorrection.m</span></span>
+<span id="cb3-102"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETNormalize.m</span></span>
+<span id="cb3-103"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETNormalizeToIntervall.m</span></span>
+<span id="cb3-104"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETOLDConcatRuns.m</span></span>
+<span id="cb3-105"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETOLDPerformAlignment.m</span></span>
+<span id="cb3-106"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETOLDPostSegmentationAnalysis.m</span></span>
+<span id="cb3-107"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH1.m</span></span>
+<span id="cb3-108"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH2.m</span></span>
+<span id="cb3-109"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH3.m</span></span>
+<span id="cb3-110"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH4.m</span></span>
+<span id="cb3-111"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH5.m</span></span>
+<span id="cb3-112"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPOSTBATCH6.m</span></span>
+<span id="cb3-113"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPRFCenterHistogram.m</span></span>
+<span id="cb3-114"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPerformAlignment.m</span></span>
+<span id="cb3-115"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPerformEyetrackerCorrection.m</span></span>
+<span id="cb3-116"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPhysioCorrection.m</span></span>
+<span id="cb3-117"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotAllCoverage.m</span></span>
+<span id="cb3-118"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotAllGazeSpectra.m</span></span>
+<span id="cb3-119"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotCorrelation.m</span></span>
+<span id="cb3-120"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotCoverage.m</span></span>
+<span id="cb3-121"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotScotDist.m</span></span>
+<span id="cb3-122"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotScotDistVarExpMeans.m</span></span>
+<span id="cb3-123"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotScotDistVisualRegionsMeans.m</span></span>
+<span id="cb3-124"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPlotXYandECCRegressionPlots.m</span></span>
+<span id="cb3-125"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPolarAngleMeanRFCov.m</span></span>
+<span id="cb3-126"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPostSegmentationAnalysis.m</span></span>
+<span id="cb3-127"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETPreSegmentationAnalysis.m</span></span>
+<span id="cb3-128"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETQuantifyScotoma.m</span></span>
+<span id="cb3-129"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETQuantifySingleSubjectScotoma.m</span></span>
+<span id="cb3-130"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETQwarp.m</span></span>
+<span id="cb3-131"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETRealignPrevious.m</span></span>
+<span id="cb3-132"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETRealignment.m</span></span>
+<span id="cb3-133"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSAVEALLRELIABILITYDATA.m</span></span>
+<span id="cb3-134"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSAVEALLSTATS.m</span></span>
+<span id="cb3-135"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSAVEMEANCORRECTEDDATA.m</span></span>
+<span id="cb3-136"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSPMCenterSurround.m</span></span>
+<span id="cb3-137"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSPMFullField.m</span></span>
+<span id="cb3-138"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSPMFullFieldFake.m</span></span>
+<span id="cb3-139"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllCorrelationCoefficients.m</span></span>
+<span id="cb3-140"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllCorrelationCoefficients_MeanCorrected.m</span></span>
+<span id="cb3-141"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllCoveragePlots.m</span></span>
+<span id="cb3-142"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMaps.m</span></span>
+<span id="cb3-143"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMapsR1VR2.m</span></span>
+<span id="cb3-144"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMapsRandSaccETCorrVSStable.m</span></span>
+<span id="cb3-145"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllDiffParameterMapsRandSaccVSStable.m</span></span>
+<span id="cb3-146"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllEccData.m</span></span>
+<span id="cb3-147"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllEccvsSigma.m</span></span>
+<span id="cb3-148"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllImages.m</span></span>
+<span id="cb3-149"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllParameters.m</span></span>
+<span id="cb3-150"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllParametersMeanCorrected.m</span></span>
+<span id="cb3-151"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllRFCovData.m</span></span>
+<span id="cb3-152"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllSigmaLookups.m</span></span>
+<span id="cb3-153"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllSignVoxelIndices.m</span></span>
+<span id="cb3-154"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveAllSignVoxelIndicesRET15.m</span></span>
+<span id="cb3-155"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveEccData.m</span></span>
+<span id="cb3-156"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveEccvsSigma.m</span></span>
+<span id="cb3-157"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveImage.m</span></span>
+<span id="cb3-158"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveImageLea.m</span></span>
+<span id="cb3-159"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveMeanEccvsSigma.m</span></span>
+<span id="cb3-160"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveParameter.m</span></span>
+<span id="cb3-161"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSavePerimetryOnlyDataPoints.m</span></span>
+<span id="cb3-162"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRFCovData.m</span></span>
+<span id="cb3-163"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRun12CorrelationCoefficients.m</span></span>
+<span id="cb3-164"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRun12SummaryCorrelationCoefficientsSummary.m</span></span>
+<span id="cb3-165"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRun12SummaryCorrelationCoefficientsSummary_MeanCorrected.m</span></span>
+<span id="cb3-166"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRunCorrelationCoefficients.m</span></span>
+<span id="cb3-167"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveRunSummaryCorrelationCoefficientsSummary.m</span></span>
+<span id="cb3-168"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveSigmaLookup.m</span></span>
+<span id="cb3-169"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSaveSignVoxelIndices.m</span></span>
+<span id="cb3-170"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetAllCustomThreshold.m</span></span>
+<span id="cb3-171"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetAllFullfieldThreshold.m</span></span>
+<span id="cb3-172"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetConcatEightbarsAsDefaults.m</span></span>
+<span id="cb3-173"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetCustomThreshold.m</span></span>
+<span id="cb3-174"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetFullfieldThreshold.m</span></span>
+<span id="cb3-175"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSetParamsForInitmrVista.m</span></span>
+<span id="cb3-176"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETShiftDicoms.m</span></span>
+<span id="cb3-177"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETShowMAEAdvantages.m</span></span>
+<span id="cb3-178"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETShowOnlyROIData.m</span></span>
+<span id="cb3-179"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSignRankTests.m</span></span>
+<span id="cb3-180"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSignRankTestsEXAKT.m</span></span>
+<span id="cb3-181"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSignRankTestsReliability.m</span></span>
+<span id="cb3-182"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSliceTiming.m</span></span>
+<span id="cb3-183"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETSmoothing.m</span></span>
+<span id="cb3-184"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETTTests.m</span></span>
+<span id="cb3-185"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETToAnatSpace.m</span></span>
+<span id="cb3-186"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETTopup.m</span></span>
+<span id="cb3-187"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETUnwarp.m</span></span>
+<span id="cb3-188"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETUnwarpOrTopup.m</span></span>
+<span id="cb3-189"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETaddOLDmrVista.m</span></span>
+<span id="cb3-190"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETaddmrVista.m</span></span>
+<span id="cb3-191"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETinterativeScotomaEstimation.m</span></span>
+<span id="cb3-192"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETiterativeScotomaEstimation.m</span></span>
+<span id="cb3-193"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETlinkHeudiconv.m</span></span>
+<span id="cb3-194"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETrmOLDmrVista.m</span></span>
+<span id="cb3-195"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETrmPlotCoverage.m</span></span>
+<span id="cb3-196"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">RETrmmrVista.m</span></span>
+<span id="cb3-197"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">STIMSIM22_PostBatch.m</span></span>
+<span id="cb3-198"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">STIMSIM22_PreBatch.m</span></span>
+<span id="cb3-199"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">blalaa.m</span></span>
+<span id="cb3-200"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">ea_antsmat2mat.m</span></span>
+<span id="cb3-201"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">kde.m</span></span>
+<span id="cb3-202"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">kde2d.m</span></span>
+<span id="cb3-203"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">parfor_progressbar.m</span></span>
+<span id="cb3-204"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">rmNonBinaryCorrection.m</span></span>
+<span id="cb3-205"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">rsl_ls.m</span></span>
+<span id="cb3-206"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">rsl_makelist.m</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and it was running on one server only…</p>
+<p>with the correct user…</p>
 </section></section>
 <section>
-<section id="in-the-evening" class="title-slide slide level1 center">
-<h1>In the evening</h1>
-<ul>
-<li>here is some new text</li>
-</ul>
+<section id="containerized-prf-analysis-framework" class="title-slide slide level1 nostretch center">
+<h1>Containerized pRF Analysis Framework</h1>
+<div class="fragment">
+<p><img data-src="sources/plos_gari_paper.png" style="width:80.0%"></p>
+</div>
 </section>
-<section id="dinner" class="slide level2">
-<h2>Dinner</h2>
+<section id="containers" class="slide level2">
+<h2>Containers</h2>
+<div class="fragment">
 <ul>
-<li>Eat spaghetti</li>
-<li>Drink wine</li>
+<li>Docker and/or Singularity <img data-src="sources/docker.png" class="absolute" style="top: 0vh; right: 0vh; width: 300px; "> <img data-src="sources/singularity.png" class="absolute" style="top: 20vh; right: 0vh; width: 300px; "></li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Containers encapsulate all necessary<br>
+programs libraries and code snippets</li>
+</ul>
+</div>
+<div>
+<ul>
+<li class="fragment">Easy to use</li>
+<li class="fragment">Reproducible even on different OS</li>
+<li class="fragment">Still running in years</li>
+</ul>
+</div>
 </section>
-<section id="going-to-sleep" class="slide level2">
-<h2>Going to sleep</h2>
-<ul>
-<li>Get in bed</li>
-<li>Count sheep</li>
-</ul>
+<section id="containerized-prf-analysis-framework-1" class="slide level2 nostretch">
+<h2>Containerized pRF Analysis Framework</h2>
+<div class="fragment">
+<p><img data-src="sources/plos_gari_paper.png" style="width:80.0%"></p>
+</div>
 
 </section></section>
     </div>

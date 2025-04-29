@@ -37,7 +37,7 @@ body,
 }*/
 
 .reveal{
-  background-color: white !important;
+  background-color: white;
   color:            black;
   h1, h2 {
     color: $mdb;
@@ -52,7 +52,7 @@ body,
   bottom: -7.5px !important; /* above the bar */
   right: unset !important;
   top: unset !important;
-  left: 15px;
+  left: 45px;
   height: $logo-height !important;
   width: 100x !important;
   max-width: unset !important;
@@ -73,8 +73,14 @@ body,
   z-index: 9998 !important;
 }
 
-
+.reveal code {
+  max-height: 100% !important;
+}
 /* Add bottom padding so slide content never overlaps the fixed bar */
 .reveal {
   padding-bottom: calc(#{$bar-height} + 0.75rem);
+}
+
+.dark-terminal {
+  background-color: #2e2e2e !important;  /* dark gray */
 }
