@@ -94,7 +94,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-2e89e323795d4e81243895fa6900c556.css">
+  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-a8afb34b6cbdc8a47162e2682dc6bd5d.css">
   <link href="presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -203,9 +203,38 @@ David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga
 </div>
 
 </section>
-<section>
-<section id="why-we-need-containers" class="title-slide slide level1 center">
-<h1>Why we need Containers</h1>
+<section id="prf-mapping-is-a-robust-and-reproducible-method" class="slide level2">
+<h2>pRF Mapping is a Robust and Reproducible Method</h2>
+<div class="fragment">
+<h3 id="this-was-shown">This was shown</h3>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li><a href="https://doi.org/10.1523/eneuro.0087-22.2022" target="_blank">Linhardt (2022)</a></li>
+<li><a href="https://doi.org/10.1016/j.neuroimage.2021.118609" target="_blank">Himmelberg (2021)</a></li>
+<li><a href="https://doi.org/10.1167/18.13.23" target="_blank">Benson (2018)</a></li>
+<li><a href="https://doi.org/10.1016/j.neuroimage.2017.09.008" target="_blank">Zeidman (2017)</a></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<ul>
+<li><a href="https://doi.org/10.1016/j.neuroimage.2016.09.013" target="_blank">van Dijk (2016)</a></li>
+<li><a href="https://doi.org/10.1371/journal.pone.0114054" target="_blank">Senden (2014)</a></li>
+<li><a href="https://doi.org/10.1167/13.7.13.doi" target="_blank">Binda (2013)</a></li>
+<li><a href="https://doi.org/10.1167/12.3.10" target="_blank">Zuiderbaan (2012)</a>, …</li>
+</ul>
+</div></div>
+</div>
+<div class="fragment">
+<h3 id="however">However…</h3>
+<div>
+<p>Results remain sensitive to variations in</p>
+<ul>
+<li class="fragment"><p>stimulus design (e.g.&nbsp;<a href="https://doi.org/10.1167/jov.25.1.5" target="_blank">Chang (2025)</a>, <a href="https://doi.org/10.1167/tvst.12.3.6" target="_blank">Pawloff (2023)</a>, <a href="https://doi.org/10.1016/j.neuroimage.2021.118240" target="_blank">Linhardt (2021)</a>, <a href="https://doi.org/10.3389/fnhum.2015.00096" target="_blank">Alvarez(2025)</a>)</p></li>
+<li class="fragment"><p>preprocessing (e.g.&nbsp;<a href="https://doi.org/10.1002/hbm.70140" target="_blank">Linhardt (2025)</a>)</p></li>
+<li class="fragment"><p>analysis environment and software (e.g.&nbsp;<a href="https://doi.org/10.1371/journal.pcbi.1007924" target="_blank">Lerma-Usabiaga (2020)</a>)</p></li>
+</ul>
+</div>
+</div>
 <aside class="notes">
 <p>Why do we need containerization, standardization, reproducible analyses</p>
 <style type="text/css">
@@ -694,10 +723,9 @@ David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga
 <span id="cb3-206"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">rsl_makelist.m</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and it was running on one server only…</p>
 <p>with the correct user…</p>
-</section></section>
-<section>
-<section id="containerized-prf-analysis-framework" class="title-slide slide level1 nostretch center">
-<h1>Containerized pRF Analysis Framework</h1>
+</section>
+<section id="containerized-prf-analysis-framework" class="slide level2 nostretch">
+<h2>Containerized pRF Analysis Framework</h2>
 <div class="fragment">
 <p><img data-src="sources/plos_gari_paper.png" style="width:80.0%"></p>
 </div>
@@ -803,7 +831,7 @@ programs libraries and code snippets</li>
 <p><img data-src="sources/flowchart_presentation4.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
 <div class="fragment fade-in-then-out absolute" style="top: 40%; left: 10%,; width: 90%; ">
 <ul>
-<li>Masking using <a href="https://doi.org/10.1093/cercor/bhu277">Wang (2015)</a> or <a href="https://doi.org/10.1371/journal.pcbi.1003538">Benson (2024)</a> atlas, custom mask, full brain</li>
+<li>Masking using <a href="https://doi.org/10.1093/cercor/bhu277" target="_blank">Wang (2015)</a> or <a href="https://doi.org/10.1371/journal.pcbi.1003538" target="_blank">Benson (2024)</a> atlas, custom mask, full brain</li>
 <li>rearranges data to the analysis standard input</li>
 <li>reconstructs stimulus from vistadisp log</li>
 </ul>
@@ -829,41 +857,110 @@ programs libraries and code snippets</li>
 </div>
 <div class="fragment">
 <p><img data-src="sources/flowchart_presentation6.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
-<div class="fragment absolute" style="display:flex;flex-direction:column;align-items:center;top: 38%; left: 5%; ">
-<p><strong>Coverage map</strong></p>
+<div class="fragment absolute" style="text-align:center;top: 38%; left: 5%; ">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="sources/covmap.png" height="350"></p>
+<figcaption><strong>Coverage map</strong></figcaption>
+</figure>
 </div>
-<div class="fragment absolute" style="display:flex;flex-direction:column;align-items:center;top: 38%; left: 35%; ">
-<p><strong>Inflated</strong></p>
+</div>
+<div class="fragment absolute" style="text-align:center;top: 38%; left: 35%; ">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="sources/hemi-L_ecc_inflated.png" height="350"></p>
+<figcaption><strong>Inflated</strong></figcaption>
+</figure>
 </div>
-<div class="fragment absolute" style="display:flex;flex-direction:column;align-items:center;top: 38%; left: 65%; ">
-<p><strong>Sphere</strong></p>
+</div>
+<div class="fragment absolute" style="text-align:center;top: 38%; left: 65%; ">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="sources/hemi-R_ecc_sphere.png" height="350"></p>
+<figcaption><strong>Sphere</strong></figcaption>
+</figure>
 </div>
-<div class="fragment absolute" style="top: 82%; left: 10%; ">
+</div>
+<div class="fragment absolute" style="top: 78%; left: 10%; ">
 <ul>
 <li>Save results it to original format</li>
-<li>Based on PRFclass handeling the data <a href="httsp://github.com/dlinhardt/PRFclass">github.com/dlinhardt/PRFclass</a></li>
+<li>Based on PRFclass handeling the data <a href="https://github.com/dlinhardt/PRFclass" target="_blank">github.com/dlinhardt/PRFclass</a></li>
 </ul>
 </div>
 </div>
 </section>
 <section id="how-to-use-containers" class="slide level2">
 <h2>How to use Containers</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<p>Config File</p>
+<div class="sourceCode" id="cb5" style="max-height:550px; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"subjects"</span>                : <span class="st">"t001"</span>,</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sessions"</span>                : <span class="st">"all"</span>,</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"etcorrection"</span>            : false,</span>
+<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"force"</span>                   : false,</span>
+<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"custom_output_name"</span>      : <span class="st">""</span>,</span>
+<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"fmriprep_legacy_layout"</span>  : false,</span>
+<span id="cb5-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"forceParams"</span>             : <span class="st">""</span>,</span>
+<span id="cb5-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"use_numImages"</span>           : false,</span>
+<span id="cb5-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"verbose"</span>                 : true,</span>
+<span id="cb5-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="st">"config"</span><span class="ex">:</span> {</span>
+<span id="cb5-12"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="st">"analysisSpace"</span>       : <span class="st">"fsaverage"</span>,</span>
+<span id="cb5-13"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="st">"average_runs"</span>        : true,</span>
+<span id="cb5-14"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="st">"output_only_average"</span> : false,</span>
+<span id="cb5-15"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="st">"rois"</span>                : <span class="st">"all"</span>,</span>
+<span id="cb5-16"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="st">"atlases"</span>             : <span class="st">"benson,wang"</span>,</span>
+<span id="cb5-17"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fmriprep_analysis"</span>   : <span class="st">"01"</span></span>
+<span id="cb5-18"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">}</span></span>
+<span id="cb5-19"><a href="" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p>Calling the Container</p>
+<div class="sourceCode" id="cb6" style="max-height:550px; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># input folder:</span></span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="va">baseP</span><span class="op">=</span><span class="va">$(</span><span class="fu">dirname</span> <span class="st">"</span><span class="va">$(</span><span class="fu">dirname</span> <span class="st">"</span><span class="va">$(</span><span class="fu">readlink</span> <span class="at">-f</span> <span class="st">"</span><span class="va">$0</span><span class="st">"</span><span class="va">)</span><span class="st">"</span><span class="va">)</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">unset</span> <span class="va">PYTHONPATH</span><span class="kw">;</span> <span class="ex">singularity</span> run <span class="dt">\</span></span>
+<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">-H</span> <span class="va">$baseP</span>/singularity_home <span class="dt">\</span></span>
+<span id="cb6-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">-B</span> <span class="va">$baseP</span>/BIDS/derivatives/fmriprep:/flywheel/v0/input <span class="dt">\</span></span>
+<span id="cb6-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">-B</span> <span class="va">$baseP</span>/BIDS/derivatives:/flywheel/v0/output  <span class="dt">\</span></span>
+<span id="cb6-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">-B</span> <span class="va">$baseP</span>/BIDS:/flywheel/v0/BIDS  <span class="dt">\</span></span>
+<span id="cb6-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">-B</span> <span class="va">$baseP</span>/config/prfprepare.json:/flywheel/v0/config.json <span class="dt">\</span></span>
+<span id="cb6-12"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">--cleanenv</span> /ceph/mri.meduniwien.ac.at/departments/physics/fmrilab/lab/prfprepare/prfprepare_6.1.sif</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+<div class="fragment">
+<p>Example dataset with all scripts (to be updated): <a href="https://osf.io/seh6b/" target="_blank">osf.io/seh6b</a></p>
+</div>
 </section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion</h2>
-<div>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<div class="fragment">
 <ul>
-<li class="fragment"><p>BIDS to make data structure understandable in future</p></li>
-<li class="fragment"><p>fMRIPrep for state-of-the-art preprocessing</p></li>
-<li class="fragment"><p>use the containerized pipeline to ensure reproducible results</p></li>
-<li class="fragment"><p>example dataset with all scripts: <a href="https://osf.io/seh6b/">osf.io/seh6b</a></p></li>
+<li><strong>Standardize</strong> your data stucture using BIDS and your workflow for reproducibility</li>
 </ul>
 </div>
+<div class="fragment">
+<ul>
+<li><strong>Automate</strong> the processing using containers as <a href="fmriprep.org" target="_blank">fMRIPrep</a>, <a href="https://github.com/fmriat/prfprepare" target="_blank">prfprepare</a>, <a href="https://github.com/vistalab/prfmodel" target="_blank">prfanalyze</a> and <a href="https://github.com/fmriat/prfresult" target="_blank">prfresult</a></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Collaborate</strong> by sharing fully documented datasets and transparent analysis workflows, enabling direct comparison of results</li>
+</ul>
+</div>
+<div class="fragment absolute" style="bottom: 25%; ">
+<h3 id="get-in-touch">Get in touch!</h3>
+<p><a href="mailto:david.linhardt@meduniwien.ac.at">david.linhardt@meduniwien.ac.at</a></p>
+<p>Presentation on GitHub: <a href="https://github.com/dlinhardt/2025-05-02_pRF_workshop_london" target="_blank">github.com/dlinhardt</a></p>
+</div>
 
-</section></section>
+</div>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="template/logo1.png" class="slide-logo"></p>
