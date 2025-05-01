@@ -1,4 +1,4 @@
-```bash {.dark-terminal code-line-numbers="false" style="max-height:30vh; overflow-y:auto;"}
+```bash {.dark-terminal style="max-height:550px; overflow-y:auto;" code-line-numbers="false"}
 $ ls -l /z/fmrilab/lab/RETPipeline/Scripts
 
 GetPRFParameters.m

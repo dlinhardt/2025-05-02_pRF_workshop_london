@@ -94,7 +94,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-4f61b39ee1c59f084fe1c4e7412e14cb.css">
+  <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-2e89e323795d4e81243895fa6900c556.css">
   <link href="presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -204,10 +204,10 @@ David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga
 
 </section>
 <section>
-<section id="why-we-need-it" class="title-slide slide level1 center">
-<h1>Why we need it</h1>
+<section id="why-we-need-containers" class="title-slide slide level1 center">
+<h1>Why we need Containers</h1>
 <aside class="notes">
-<p>Why do we need containerization, standardization, reproducvible analyses</p>
+<p>Why do we need containerization, standardization, reproducible analyses</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -226,7 +226,7 @@ David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga
 <p>Have a look on the analysis of the last study</p>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb1" style="max-height:30vh; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tree</span>
+<div class="sourceCode" id="cb1" style="max-height:550px; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tree</span>
 <span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
 <span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> preproc</span>
 <span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── TEST</span>
@@ -257,7 +257,7 @@ David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga
 <section id="what-i-found-when-i-started-1" class="slide level2">
 <h2>What I found when I started</h2>
 <div class="fragment">
-<div class="sourceCode" id="cb2" style="max-height:30vh; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /z/fmrilab/lab/RETPipeline/Scripts</span>
+<div class="sourceCode" id="cb2" style="max-height:550px; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /z/fmrilab/lab/RETPipeline/Scripts</span>
 <span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">GetPRFParameters.m</span></span>
 <span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">MYrmJitterImages.m</span></span>
@@ -486,7 +486,7 @@ David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga
 </section>
 <section id="what-i-did-not-find-when-i-started" class="slide level2">
 <h2>What I did not find when I started</h2>
-<div class="sourceCode" id="cb3" style="max-height:30vh; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /z/fmrilab/lab/RETPipeline/Scripts</span>
+<div class="sourceCode" id="cb3" style="max-height:550px; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /z/fmrilab/lab/RETPipeline/Scripts</span>
 <span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">GetPRFParameters.m</span></span>
 <span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">MYrmJitterImages.m</span></span>
@@ -706,7 +706,7 @@ David Linhardt, Christian Windischberger &amp; Garikoitz Lerma-Usabiaga
 <h2>Containers</h2>
 <div class="fragment">
 <ul>
-<li>Docker and/or Singularity <img data-src="sources/docker.png" class="absolute" style="top: 0vh; right: 0vh; width: 300px; "> <img data-src="sources/singularity.png" class="absolute" style="top: 20vh; right: 0vh; width: 300px; "></li>
+<li>Docker and/or Singularity <img data-src="sources/docker.png" class="absolute" style="top: 6%; right: 10%; width: 400px; "> <img data-src="sources/singularity.png" class="absolute" style="top: 30%; right: 10%; width: 400px; "></li>
 </ul>
 </div>
 <div class="fragment">
@@ -727,6 +727,140 @@ programs libraries and code snippets</li>
 <h2>Containerized pRF Analysis Framework</h2>
 <div class="fragment">
 <p><img data-src="sources/plos_gari_paper.png" style="width:80.0%"></p>
+</div>
+</section>
+<section id="containerized-prf-analysis-framework-2" class="slide level2 nostretch">
+<h2>Containerized pRF Analysis Framework</h2>
+<div class="fragment">
+<p>A. Create synthetic data with given noise models <img data-src="sources/prfanalyze_flowchart1.png" class="absolute" style="left: 3%; bottom: 20%; width: 110%; "></p>
+</div>
+<div class="fragment">
+<p>B. Analyze the data with different tools <img data-src="sources/prfanalyze_flowchart2.png" class="absolute" style="left: 3%; bottom: 20%; width: 110%; "></p>
+</div>
+<div class="fragment">
+<p>C. Visualize the data <img data-src="sources/prfanalyze_flowchart3.png" class="absolute" style="left: 3%; bottom: 20%; width: 110%; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="sources/prfanalyze_flowchart_data.png" class="absolute" style="left: -4%; bottom: 20%; width: 40%; "></p>
+</div>
+</section>
+<section id="prf-pipeline" class="slide level2">
+<h2>pRF Pipeline</h2>
+<p><img data-src="sources/flowchart_presentation0.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
+<div class="fragment">
+<p><img data-src="sources/flowchart_presentation1.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="sources/flowchart_presentation2.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
+<div class="fragment fade-in-then-out absolute" style="top: 40%; left: 10%,; width: 90%; ">
+<p>BIDS: <a href="https://bids.neuroimaging.io" target="_blank">bids.neuroimaging.io</a></p>
+<div class="sourceCode" id="cb4" style="max-height:430px; overflow-y:auto;"><pre class="sourceCode bash dark-terminal code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> BIDS</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> dataset_description.json</span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> derivatives</span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="ex">├──</span> fmriprep</span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="ex">├──</span> prfprepare</span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="ex">├──</span> prfanalyze</span>
+<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="ex">└──</span> prfresult</span>
+<span id="cb4-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> sourcedata</span>
+<span id="cb4-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> sub-001</span>
+<span id="cb4-11"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="ex">├──</span> ses-001</span>
+<span id="cb4-12"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="kw">|</span>   <span class="ex">├──</span> anat</span>
+<span id="cb4-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="kw">|</span>   <span class="ex">├──</span> fmap</span>
+<span id="cb4-14"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="kw">|</span>   <span class="ex">└──</span> func</span>
+<span id="cb4-15"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="ex">└──</span> ses-002</span>
+<span id="cb4-16"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>       <span class="ex">├──</span> anat</span>
+<span id="cb4-17"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>       <span class="ex">├──</span> fmap</span>
+<span id="cb4-18"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>       <span class="ex">└──</span> func</span>
+<span id="cb4-19"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> sub-002</span>
+<span id="cb4-20"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>   <span class="ex">└──</span> ses-001</span>
+<span id="cb4-21"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>       <span class="ex">├──</span> anat</span>
+<span id="cb4-22"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>       <span class="ex">├──</span> fmap</span>
+<span id="cb4-23"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">|</span>       <span class="ex">└──</span> func</span>
+<span id="cb4-24"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> sub-003</span>
+<span id="cb4-25"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="ex">└──</span> ses-001</span>
+<span id="cb4-26"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="ex">├──</span> anat</span>
+<span id="cb4-27"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="ex">│</span>   ├── sub-003_ses-001_T1w.nii.gz</span>
+<span id="cb4-28"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="ex">│</span>   └── sub-003_ses-001_T1w.json</span>
+<span id="cb4-29"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="ex">├──</span> fmap</span>
+<span id="cb4-30"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="ex">│</span>   ├── sub-003_ses-001_dir-1_epi.nii.gz</span>
+<span id="cb4-31"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="ex">│</span>   └── sub-003_ses-001_dir-1_epi.json</span>
+<span id="cb4-32"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="ex">└──</span> func</span>
+<span id="cb4-33"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="ex">├──</span> sub-003_ses-001_task-bar_run-01_bold.nii.gz</span>
+<span id="cb4-34"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="ex">├──</span> sub-003_ses-001_task-bar_run-01_bold.json</span>
+<span id="cb4-35"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="ex">├──</span> sub-003_ses-001_task-bar_run-02_bold.nii.gz</span>
+<span id="cb4-36"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="ex">└──</span> sub-003_ses-001_task-bar_run-02_bold.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p><img data-src="sources/flowchart_presentation3.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
+<div class="fragment fade-in-then-out absolute" style="top: 40%; left: 10%,; width: 90%; ">
+<p>fMRIPrep: <a href="https://fmriprep.org" target="_blank">fmriprep.org</a></p>
+<p>Open-source state-of-the-art fMRI preprocessing</p>
+</div>
+</div>
+<div class="fragment">
+<p><img data-src="sources/flowchart_presentation4.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
+<div class="fragment fade-in-then-out absolute" style="top: 40%; left: 10%,; width: 90%; ">
+<ul>
+<li>Masking using <a href="https://doi.org/10.1093/cercor/bhu277">Wang (2015)</a> or <a href="https://doi.org/10.1371/journal.pcbi.1003538">Benson (2024)</a> atlas, custom mask, full brain</li>
+<li>rearranges data to the analysis standard input</li>
+<li>reconstructs stimulus from vistadisp log</li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<p><img data-src="sources/flowchart_presentation5.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
+<div class="fragment fade-in-then-out absolute" style="top: 40%; left: 10%,; width: 90%; ">
+<p>Run pRF analysis in one of these tools:</p>
+<ul>
+<li>Vistasoft <a href="https://github.com/vistalab/vistasoft" target="_blank">github.com/vistalab/Vistasoft</a></li>
+<li>analyzePRF <a href="https://github.com/cvnlab/analyzePRF" target="_blank">github.com/cvnlab/analyzePRF</a></li>
+<li>popeye <a href="https://github.com/kdesimone/popeye" target="_blank">github.com/kdesimone/popeye</a></li>
+<li>AFNI <a href="https://github.com/afni/afni" target="_blank">github.com/afni/AFNI</a></li>
+</ul>
+<div style="opacity:0.4">
+<ul>
+<li>SamSrf <a href="https://github.com/samsrf/SamSrf" target="_blank">github.com/samsrf/SamSrf</a></li>
+<li>GEM-pRF</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><img data-src="sources/flowchart_presentation6.png" class="absolute" style="top: 10%; left: 0%; width: 100%; "></p>
+<div class="fragment absolute" style="display:flex;flex-direction:column;align-items:center;top: 38%; left: 5%; ">
+<p><strong>Coverage map</strong></p>
+<p><img data-src="sources/covmap.png" height="350"></p>
+</div>
+<div class="fragment absolute" style="display:flex;flex-direction:column;align-items:center;top: 38%; left: 35%; ">
+<p><strong>Inflated</strong></p>
+<p><img data-src="sources/hemi-L_ecc_inflated.png" height="350"></p>
+</div>
+<div class="fragment absolute" style="display:flex;flex-direction:column;align-items:center;top: 38%; left: 65%; ">
+<p><strong>Sphere</strong></p>
+<p><img data-src="sources/hemi-R_ecc_sphere.png" height="350"></p>
+</div>
+<div class="fragment absolute" style="top: 82%; left: 10%; ">
+<ul>
+<li>Save results it to original format</li>
+<li>Based on PRFclass handeling the data <a href="httsp://github.com/dlinhardt/PRFclass">github.com/dlinhardt/PRFclass</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="how-to-use-containers" class="slide level2">
+<h2>How to use Containers</h2>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<div>
+<ul>
+<li class="fragment"><p>BIDS to make data structure understandable in future</p></li>
+<li class="fragment"><p>fMRIPrep for state-of-the-art preprocessing</p></li>
+<li class="fragment"><p>use the containerized pipeline to ensure reproducible results</p></li>
+<li class="fragment"><p>example dataset with all scripts: <a href="https://osf.io/seh6b/">osf.io/seh6b</a></p></li>
+</ul>
 </div>
 
 </section></section>
@@ -912,9 +1046,9 @@ programs libraries and code snippets</li>
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1920,
 
-        height: 700,
+        height: 1080,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,

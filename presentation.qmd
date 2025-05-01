@@ -7,13 +7,17 @@ format:
         logo: template/logo1.png
         theme: template/custom.scss
         highlight-style: arrow-dark
+        auto-stretch: false
+        width: 1920
+        height: 1080
+    pdf: default
 ---
 
 
-# Why we need it
+# Why we need Containers
 
 ::: {.notes}
-Why do we need containerization, standardization, reproducvible analyses
+Why do we need containerization, standardization, reproducible analyses
 :::
 
 ## What I found when I started
@@ -69,8 +73,8 @@ with the correct user...
 ## Containers
 ::: {.fragment}
 - Docker and/or Singularity
-![](sources/docker.png){.absolute top=0vh right=0vh width="300px"}
-![](sources/singularity.png){.absolute top=20vh right=0vh width="300px"}
+![](sources/docker.png){.absolute top=6% right=10% width="400px"}
+![](sources/singularity.png){.absolute top=30% right=10% width="400px"}
 :::
 
 ::: {.fragment}
@@ -89,4 +93,158 @@ programs libraries and code snippets
 
 ::: {.fragment}
 ![](sources/plos_gari_paper.png){width="80%"}
+:::
+
+
+## Containerized pRF Analysis Framework {.nostretch}
+
+::: {.fragment}
+A. Create synthetic data with given noise models
+![](sources/prfanalyze_flowchart1.png){.absolute bottom=20% left=3% width="110%"}
+:::
+
+::: {.fragment}
+B. Analyze the data with different tools
+![](sources/prfanalyze_flowchart2.png){.absolute bottom=20% left=3% width="110%"}
+:::
+
+::: {.fragment}
+C. Visualize the data
+![](sources/prfanalyze_flowchart3.png){.absolute bottom=20% left=3% width="110%"}
+:::
+
+::: {.fragment}
+![](sources/prfanalyze_flowchart_data.png){.absolute bottom=20% left=-4% width="40%"}
+:::
+
+
+## pRF Pipeline
+![](sources/flowchart_presentation0.png){.absolute top=10% left=0% width="100%"}
+
+::: {.fragment}
+![](sources/flowchart_presentation1.png){.absolute top=10% left=0% width="100%"}
+:::
+
+::: {.fragment}
+![](sources/flowchart_presentation2.png){.absolute top=10% left=0% width="100%"}
+
+::: {.fragment .fade-in-then-out .absolute top=40% left=10%, width=90%}
+BIDS: [bids.neuroimaging.io](https://bids.neuroimaging.io){target="_blank"}
+```bash {.dark-terminal style="max-height:430px; overflow-y:auto;" code-line-numbers="false"}
+.
+└── BIDS
+    ├── dataset_description.json
+    ├── derivatives
+    |   ├── fmriprep
+    |   ├── prfprepare
+    |   ├── prfanalyze
+    |   └── prfresult
+    ├── sourcedata
+    ├── sub-001
+    |   ├── ses-001
+    |   |   ├── anat
+    |   |   ├── fmap
+    |   |   └── func
+    |   └── ses-002
+    |       ├── anat
+    |       ├── fmap
+    |       └── func
+    ├── sub-002
+    |   └── ses-001
+    |       ├── anat
+    |       ├── fmap
+    |       └── func
+    └── sub-003
+        └── ses-001
+            ├── anat
+            │   ├── sub-003_ses-001_T1w.nii.gz
+            │   └── sub-003_ses-001_T1w.json
+            ├── fmap
+            │   ├── sub-003_ses-001_dir-1_epi.nii.gz
+            │   └── sub-003_ses-001_dir-1_epi.json
+            └── func
+                ├── sub-003_ses-001_task-bar_run-01_bold.nii.gz
+                ├── sub-003_ses-001_task-bar_run-01_bold.json
+                ├── sub-003_ses-001_task-bar_run-02_bold.nii.gz
+                └── sub-003_ses-001_task-bar_run-02_bold.json
+```
+:::
+:::
+
+::: {.fragment}
+![](sources/flowchart_presentation3.png){.absolute top=10% left=0% width="100%"}
+
+::: {.fragment .fade-in-then-out .absolute top=40% left=10%, width=90%}
+fMRIPrep: [fmriprep.org](https://fmriprep.org){target="_blank"}
+
+Open-source state-of-the-art fMRI preprocessing
+:::
+:::
+
+::: {.fragment}
+![](sources/flowchart_presentation4.png){.absolute top=10% left=0% width="100%"}
+
+::: {.fragment .fade-in-then-out .absolute top=40% left=10%, width=90%}
+- Masking using [Wang (2015)](https://doi.org/10.1093/cercor/bhu277) or [Benson (2024)](https://doi.org/10.1371/journal.pcbi.1003538) atlas, custom mask, full brain
+- rearranges data to the analysis standard input
+- reconstructs stimulus from vistadisp log
+:::
+:::
+
+::: {.fragment}
+![](sources/flowchart_presentation5.png){.absolute top=10% left=0% width="100%"}
+
+::: {.fragment .fade-in-then-out .absolute top=40% left=10%, width=90%}
+Run pRF analysis in one of these tools:
+
+   - Vistasoft [github.com/vistalab/Vistasoft](https://github.com/vistalab/vistasoft){target="_blank"}
+   - analyzePRF [github.com/cvnlab/analyzePRF](https://github.com/cvnlab/analyzePRF){target="_blank"}
+   - popeye [github.com/kdesimone/popeye](https://github.com/kdesimone/popeye){target="_blank"}
+   - AFNI [github.com/afni/AFNI](https://github.com/afni/afni){target="_blank"}
+
+::: {style="opacity:0.4"}
+   - SamSrf [github.com/samsrf/SamSrf](https://github.com/samsrf/SamSrf){target="_blank"}
+   - GEM-pRF
+:::
+:::
+:::
+
+::: {.fragment}
+![](sources/flowchart_presentation6.png){.absolute top=10% left=0% width="100%"}
+
+::: {.fragment .absolute top=38% left=5% style="display:flex;flex-direction:column;align-items:center;"}
+**Coverage map**
+
+![](sources/covmap.png){height=350px}
+:::
+
+::: {.fragment .absolute top=38% left=35% style="display:flex;flex-direction:column;align-items:center;"}
+**Inflated**
+
+![](sources/hemi-L_ecc_inflated.png){height=350px}
+:::
+
+::: {.fragment .absolute top=38% left=65% style="display:flex;flex-direction:column;align-items:center;"}
+**Sphere**
+
+![](sources/hemi-R_ecc_sphere.png){height=350px}
+:::
+
+::: {.fragment .absolute top=82% left=10%}
+- Save results it to original format
+- Based on PRFclass handeling the data [github.com/dlinhardt/PRFclass](httsp://github.com/dlinhardt/PRFclass)
+:::
+:::
+
+## How to use Containers
+
+
+
+## Conclusion
+::: {.incremental}
+- BIDS to make data structure understandable in future
+- fMRIPrep for state-of-the-art preprocessing
+- use the containerized pipeline to ensure reproducible results
+
+- example dataset with all scripts: [osf.io/seh6b](https://osf.io/seh6b/)
 :::
